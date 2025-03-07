@@ -9,7 +9,7 @@ async def GetAll():
     movies = await MovieService.GetMovies()
     return {
         "meta_data":[{
-            "count" : len(movies),
+            "count" : len(movies)
         }],
         "data": movies
     }
