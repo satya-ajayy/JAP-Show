@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.models.movies import MovieModel, MovieUpdateModel
+from app.models.movies import MovieModel, MovieUpdateModel, MovieCreateModel
 from app.services.movies_service import MovieService
 
 router = APIRouter()
@@ -15,7 +15,7 @@ async def GetAll():
     }
 
 @router.post("/movies", status_code=201)
-async def Insert(movie: MovieModel):
+async def Insert(movie: MovieCreateModel):
     movie_id = await MovieService.CreateMovie(movie)
     return {
         "message": "Movie Inserted Successfully",
