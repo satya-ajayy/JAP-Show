@@ -1,15 +1,16 @@
-from app.models.movies import MovieModel, MovieUpdateModel
+from app.models.movies import MovieModel, MovieUpdateModel, MovieCreateModel
 from app.repositories.movies_repo import MovieRepository
 
 class MovieService:
     @staticmethod
-    async def CreateMovie(movie: MovieModel) -> str:
-        movie_dict =  movie.model_dump(by_alias=True)
+    async def CreateMovie(movie: MovieCreateModel) -> str:
+        movie_model = MovieModel.from_create_model(movie)
+        movie_dict = movie_model.model_dump(by_alias=True)
         return await MovieRepository.CreateMovie(movie_dict)
 
     @staticmethod
     async def GetMovies() -> list:
-        movies = await MovieRepository.GetMovies(limit=10)
+        movies = await MovieRepository.GetMovies()
         return movies
 
     @staticmethod
@@ -19,7 +20,7 @@ class MovieService:
 
     @staticmethod
     async def UpdateMovie(movie_id: str, movie: MovieUpdateModel) -> bool:
-        movie_dict = movie.model_dump(by_alias=True)
+        movie_dict = movie.model_dump(exclude_none=True)
         return await MovieRepository.UpdateMovie(movie_id, movie_dict)
 
     @staticmethod

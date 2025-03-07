@@ -1,0 +1,11 @@
+services:
+  mongo:
+    image: mongo:4.4.21
+    restart: always
+    network_mode: host
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+    external: true

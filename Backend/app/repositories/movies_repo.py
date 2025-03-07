@@ -9,9 +9,9 @@ class MovieRepository:
         return new_movie.inserted_id
 
     @staticmethod
-    async def GetMovies(limit: int) -> list:
-        cursor = mongo.db["movies"].find({})
-        movies = await cursor.to_list(length=limit)
+    async def GetMovies() -> list:
+        cursor = mongo.db["movies"].find({}).sort([("created_at", -1)]).limit(10)
+        movies = await cursor.to_list()
         return MoviesSerializer(movies)
 
     @staticmethod
