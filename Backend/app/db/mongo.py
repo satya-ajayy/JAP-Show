@@ -1,4 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
+from app.config.settings import settings
 
 class MongoDB:
     client: AsyncIOMotorClient = None
@@ -6,7 +7,7 @@ class MongoDB:
 
     @classmethod
     async def connect(cls):
-        cls.client = AsyncIOMotorClient("mongodb://localhost:27017")
+        cls.client = AsyncIOMotorClient(settings.MONGO_URI)
         cls.db = cls.client["jap-show"]
 
     @classmethod
