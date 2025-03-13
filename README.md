@@ -1,1 +1,1 @@
-# JAP-Show
+# JAP-MAGIC-SHOW
