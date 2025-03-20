@@ -9,6 +9,6 @@ async def GetRecommendedMovies():
     return movies
 
 @router.get("/banners")
-async def GetMovies():
+async def GetBanners():
     banners = await HomePageService.GetBanners()
     return banners

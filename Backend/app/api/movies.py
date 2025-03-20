@@ -39,12 +39,12 @@ async def GetMovies(
     genre: Optional[List[str]] = Query(None),
     languages: Optional[List[str]] = Query(None),
     formats: Optional[List[str]] = Query(None),
-    certificates: Optional[List[str]] = Query(None)
+    certificate: Optional[str] = Query(None)
 ):
     movies = await MovieService.GetMoviesByFilters(
         genre=genre,
         languages=languages,
         formats=formats,
-        certificates=certificates
+        certificate=certificate
     )
     return movies

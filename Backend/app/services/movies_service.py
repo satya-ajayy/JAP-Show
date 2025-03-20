@@ -24,11 +24,11 @@ class MovieService:
         return await MovieRepository.DeleteMovie(movie_id)
 
     @staticmethod
-    async def GetMoviesByFilters(genre=None, languages=None, formats=None, certificates=None):
+    async def GetMoviesByFilters(genre=None, languages=None, formats=None, certificate=None):
         query = {}
         if genre: query["genre"] = {"$in": genre}
         if languages: query["language"] = {"$in": languages}
         if formats: query["formats"] = {"$in": formats}
-        if certificates: query["certificate"] = {"$in": certificates}
+        if certificate: query["certificate"] = certificate
         movies = await MovieRepository.GetMoviesByFilters(query)
         return movies
